@@ -1,0 +1,38 @@
+version: "3"
+services:
+  orientdb:
+    image: orientdb:2.2.37
+    restart: always
+    ports:
+      - "127.0.0.1:2480:2480"
+      - "127.0.0.1:2424:2424"
+    environment:
+      ORIENTDB_ROOT_PASSWORD: cross-db-example
+  postgres:
+    image: postgres:11.5
+    restart: always
+    environment:
+      POSTGRES_USER: xdb
+      POSTGRES_DB: xdb
+      POSTGRES_PASSWORD: cross-db-example
+    ports:
+      - "127.0.0.1:5432:5432"
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/server.Dockerfile
+    image: demo-web-server
+    restart: always
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      ORIENTDB_HOST_AND_PORT: orientdb:2424
+      ORIENTDB_DB: xdb
+      ORIENTDB_USER: root
+      ORIENTDB_PASSWORD: cross-db-example
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: xdb
+      POSTGRES_USER: xdb
+      POSTGRES_PASSWORD: cross-db-example
+    command: ["python", "-m", "demo.server", "--host", "0.0.0.0",
+              "--graph-location", "orientdb:2424", "--graph-password", "game-of-graphql"]

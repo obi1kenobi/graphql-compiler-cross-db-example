@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+requests = "*"
+graphql-compiler = "==2.0.0b1"
+grift = "*"
+psycopg2-binary = "*"
+pyorient = "*"
+backoff = "*"
+jupyterlab = "*"
+pandas = "*"
+
+[requires]
+python_version = "3.6"
