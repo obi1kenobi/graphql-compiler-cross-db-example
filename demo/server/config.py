@@ -5,6 +5,7 @@ from grift import BaseConfig, ConfigProperty, EnvLoader
 import psycopg2
 from psycopg2.extras import DictCursor
 from pyorient.ogm import Config, Graph
+from pyorient.ogm.declarative import declarative_node, declarative_relationship
 from schematics.types import StringType
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -28,6 +29,10 @@ def get_graph_client():
     db_url = 'plocal://' + server_config.ORIENTDB_HOST_AND_PORT + '/' + server_config.ORIENTDB_DB
     graph = Graph(Config.from_url(
         db_url, server_config.ORIENTDB_USER, server_config.ORIENTDB_PASSWORD), strict=True)
+
+    graph.include(
+        graph.build_mapping(declarative_node(), declarative_relationship(), auto_plural=False))
+
     return graph
 
 

@@ -58,6 +58,7 @@ def get_countries_data():
         'Intermediate Region Name',
         'official_name_en',
         'Region Name',
+        'CLDR display name',
     ]
     raw_countries_df = raw_countries_df[countries_columns]
     countries_with_no_name = pd.isnull(raw_countries_df['official_name_en'])

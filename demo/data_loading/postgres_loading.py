@@ -1,5 +1,7 @@
 from demo.pg_models import Airline, Airport, FlightRoute
-from demo.data_loading.country_fixes import hardcoded_alpha2_values
+from demo.data_loading.fixes import (
+    fix_alpha2_value, fix_iata_or_icao_code, hardcoded_alpha2_values
+)
 from demo.data_loading.data_fetching import (
     get_airlines_data, get_airports_data, get_countries_data, get_flight_routes_data
 )
@@ -15,22 +17,7 @@ def _get_alpha2_for_country_name(countries_df, country_name):
             matching_row = next(matches.iterrows())[1]
             alpha2 = matching_row['ISO3166-1-Alpha-2']
 
-    if alpha2 is not None:
-        alpha2 = alpha2.strip()
-
-    assert alpha2 is None or len(alpha2) == 2
-    return alpha2
-
-
-def _clean_iata_or_icao_code(code):
-    if code is None:
-        return code
-
-    code = code.strip()
-    if code and code.isalnum():
-        return code
-    else:
-        return None
+    return fix_alpha2_value(alpha2)
 
 
 def load_airlines(airlines_df, countries_df):
@@ -40,8 +27,8 @@ def load_airlines(airlines_df, countries_df):
             airline = Airline(
                 id=airline_item['id'],
                 name=airline_item['name'],
-                iata_code=_clean_iata_or_icao_code(airline_item['iata_code']),
-                icao_code=_clean_iata_or_icao_code(airline_item['icao_code']),
+                iata_code=fix_iata_or_icao_code(airline_item['iata_code']),
+                icao_code=fix_iata_or_icao_code(airline_item['icao_code']),
                 callsign=airline_item['callsign'],
                 alpha2_country=alpha2,
             )
@@ -57,8 +44,8 @@ def load_airports(airports_df, countries_df):
                 name=airport_item['name'],
                 city_served=airport_item['city'],
                 alpha2_country=alpha2,
-                iata_code=_clean_iata_or_icao_code(airport_item['iata_code']),
-                icao_code=_clean_iata_or_icao_code(airport_item['icao_code']),
+                iata_code=fix_iata_or_icao_code(airport_item['iata_code']),
+                icao_code=fix_iata_or_icao_code(airport_item['icao_code']),
                 elevation_ft=airport_item['altitude'],
             )
             session.add(airport)
