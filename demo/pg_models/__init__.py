@@ -10,8 +10,8 @@ class Airport(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, index=True)
-    city_served = Column(String, nullable=False)
-    alpha2_country = Column(String(2), nullable=False, index=True)
+    city_served = Column(String, nullable=True)
+    alpha2_country = Column(String(2), nullable=True, index=True)
     iata_code = Column(String(3), nullable=True, index=True)
     icao_code = Column(String(4), nullable=True, index=True)
     elevation_ft = Column(Integer, nullable=True, index=True)
@@ -35,5 +35,5 @@ class FlightRoute(Base):
     airline_id = Column(Integer, ForeignKey('airline.id'), nullable=False, index=True)
     source_airport_id = Column(Integer, ForeignKey('airport.id'), nullable=False, index=True)
     destination_airport_id = Column(Integer, ForeignKey('airport.id'), nullable=False, index=True)
-    codeshare = Column(Boolean, nullable=False)
+    codeshare = Column(Boolean, nullable=True)
     stops = Column(Integer, nullable=False)

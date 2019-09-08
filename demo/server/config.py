@@ -1,3 +1,5 @@
+from contextlib import contextmanager
+
 import backoff
 from grift import BaseConfig, ConfigProperty, EnvLoader
 import psycopg2
@@ -5,6 +7,7 @@ from psycopg2.extras import DictCursor
 from pyorient.ogm import Config, Graph
 from schematics.types import StringType
 from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 
 class ServerConfig(BaseConfig):
@@ -43,3 +46,17 @@ def get_postgres_client(
 
 
 sqlalchemy_engine = create_engine('postgresql://', creator=get_postgres_client)
+Session = scoped_session(sessionmaker(bind=sqlalchemy_engine))
+
+
+@contextmanager
+def sqlalchemy_session():
+    session = Session()
+    try:
+        yield session
+        session.commit()
+    except Exception:
+        session.rollback()
+        raise
+    finally:
+        session.close()
