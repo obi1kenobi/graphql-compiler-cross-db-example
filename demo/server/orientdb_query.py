@@ -8,12 +8,12 @@ from graphql_compiler.schema_generation.orientdb.utils import (
 )
 from graphql_compiler.schema_generation.graphql_schema import get_graphql_schema_from_schema_graph
 
-from demo.server.config import get_graph_client
+from demo.server.config import get_pyorient_client
 
 
 def get_orientdb_graphql_schema_and_equivalence_hints():
     """Return a tuple (GraphQLSchema, type_equivalence_hints) for use with the GraphQL compiler."""
-    graph_client = get_graph_client()
+    graph_client = get_pyorient_client()
     try:
         schema_records = graph_client.client.command(ORIENTDB_SCHEMA_RECORDS_QUERY)
         schema_data = [record.oRecordData for record in schema_records]
@@ -42,7 +42,7 @@ def get_orientdb_graphql_schema_and_equivalence_hints():
 def execute_graphql_query(schema, graphql_query, graphql_args,
                           type_equivalence_hints=None, limit=1000):
     """Execute the provided GraphQL query and return the compilation result and resulting data."""
-    graph_client = get_graph_client()
+    graph_client = get_pyorient_client()
     try:
         compilation_result = graphql_to_match(
             schema, graphql_query, graphql_args,

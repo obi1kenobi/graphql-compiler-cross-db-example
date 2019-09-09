@@ -35,5 +35,4 @@ class FlightRoute(Base):
     airline_id = Column(Integer, ForeignKey('Airline.id'), nullable=False, index=True)
     source_airport_id = Column(Integer, ForeignKey('Airport.id'), nullable=False, index=True)
     destination_airport_id = Column(Integer, ForeignKey('Airport.id'), nullable=False, index=True)
-    codeshare = Column(Boolean)
     stops = Column(Integer, nullable=False, index=True)

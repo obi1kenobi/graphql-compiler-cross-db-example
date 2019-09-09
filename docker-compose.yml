@@ -26,7 +26,7 @@ services:
     ports:
       - "127.0.0.1:5000:5000"
     environment:
-      ORIENTDB_HOST_AND_PORT: orientdb:2424
+      ORIENTDB_HOST: orientdb
       ORIENTDB_DB: xdb
       ORIENTDB_USER: root
       ORIENTDB_PASSWORD: cross-db-example
@@ -34,5 +34,4 @@ services:
       POSTGRES_DB: xdb
       POSTGRES_USER: xdb
       POSTGRES_PASSWORD: cross-db-example
-    command: ["python", "-m", "demo.server", "--host", "0.0.0.0",
-              "--graph-location", "orientdb:2424", "--graph-password", "game-of-graphql"]
+    command: ["sleep", "inf"]

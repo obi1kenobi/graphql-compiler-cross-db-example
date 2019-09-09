@@ -76,7 +76,6 @@ def load_flight_routes(flight_routes_df, airlines_df, airports_df):
                 airline_id=flight_route_item['airline_id'],
                 source_airport_id=flight_route_item['source_airport_id'],
                 destination_airport_id=flight_route_item['destination_airport_id'],
-                codeshare=flight_route_item['codeshare'],
                 stops=flight_route_item['stops'],
             )
             session.add(flight_route)

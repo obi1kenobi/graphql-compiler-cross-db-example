@@ -23,14 +23,20 @@ class ServerConfig(BaseConfig):
     ORIENTDB_DB = ConfigProperty(property_type=StringType())
     ORIENTDB_USER = ConfigProperty(property_type=StringType())
     ORIENTDB_PASSWORD = ConfigProperty(property_type=StringType(), exclude_from_varz=True)
-    ORIENTDB_HOST_AND_PORT = ConfigProperty(property_type=StringType())
+    ORIENTDB_HOST = ConfigProperty(property_type=StringType())
 
 
 server_config = ServerConfig([EnvLoader()])
 
 
-def get_graph_client():
-    db_url = 'plocal://' + server_config.ORIENTDB_HOST_AND_PORT + '/' + server_config.ORIENTDB_DB
+def get_pyorient_client():
+    db_url = ''.join([
+        'plocal://',
+        server_config.ORIENTDB_HOST,
+        ':2424',
+        '/',
+        server_config.ORIENTDB_DB
+    ])
     graph = Graph(Config.from_url(
         db_url, server_config.ORIENTDB_USER, server_config.ORIENTDB_PASSWORD), strict=True)
 

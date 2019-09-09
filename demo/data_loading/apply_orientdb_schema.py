@@ -1,11 +1,11 @@
 from glob import glob
 from os import path
 
-from demo.server.config import get_graph_client
+from demo.server.config import get_pyorient_client
 
 
 def apply_orientdb_schema():
-    graph = get_graph_client()
+    graph = get_pyorient_client()
 
     comment_char = '#'
     demo_root = path.dirname(path.dirname(path.abspath(__file__)))
