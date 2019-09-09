@@ -1,4 +1,5 @@
 from contextlib import contextmanager
+import logging
 
 import backoff
 from grift import BaseConfig, ConfigProperty, EnvLoader
@@ -9,6 +10,9 @@ from pyorient.ogm.declarative import declarative_node, declarative_relationship
 from schematics.types import StringType
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+
+
+logging.basicConfig()
 
 
 class ServerConfig(BaseConfig):

@@ -44,6 +44,24 @@ def get_flight_routes_data():
         names=('airline', 'airline_id', 'source_airport', 'source_airport_id',
                'destination_airport', 'destination_airport_id', 'codeshare', 'stops', 'equipment'))
     flight_routes_df.replace(to_replace=data_replacements, inplace=True)
+
+    # Discard flight routes that don't have airline or airport records.
+    no_airline = pd.isnull(flight_routes_df['airline_id'])
+    no_source = pd.isnull(flight_routes_df['source_airport_id'])
+    no_destination = pd.isnull(flight_routes_df['destination_airport_id'])
+    flight_routes_df = flight_routes_df[~(no_airline | no_source | no_destination)]
+
+    # Codeshare data is positive-only, we don't have a way to distinguish
+    # between "not codeshare" and "unknown".
+    flight_routes_df['codeshare'] = (~pd.isnull(flight_routes_df['codeshare']))
+
+    flight_routes_df = flight_routes_df.astype({
+        'airline_id': int,
+        'source_airport_id': int,
+        'destination_airport_id': int,
+        'codeshare': bool,
+    }, copy=False)
+
     return flight_routes_df
 
 

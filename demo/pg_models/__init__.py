@@ -6,7 +6,7 @@ Base = declarative_base()
 
 
 class Airport(Base):
-    __tablename__ = 'airport'
+    __tablename__ = 'Airport'
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, index=True)
@@ -18,7 +18,7 @@ class Airport(Base):
 
 
 class Airline(Base):
-    __tablename__ = 'airline'
+    __tablename__ = 'Airline'
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, index=True)
@@ -29,11 +29,11 @@ class Airline(Base):
 
 
 class FlightRoute(Base):
-    __tablename__ = 'flightroute'
+    __tablename__ = 'FlightRoute'
 
     id = Column(Integer, primary_key=True)
-    airline_id = Column(Integer, ForeignKey('airline.id'), nullable=False, index=True)
-    source_airport_id = Column(Integer, ForeignKey('airport.id'), nullable=False, index=True)
-    destination_airport_id = Column(Integer, ForeignKey('airport.id'), nullable=False, index=True)
-    codeshare = Column(Boolean, nullable=True)
-    stops = Column(Integer, nullable=False)
+    airline_id = Column(Integer, ForeignKey('Airline.id'), nullable=False, index=True)
+    source_airport_id = Column(Integer, ForeignKey('Airport.id'), nullable=False, index=True)
+    destination_airport_id = Column(Integer, ForeignKey('Airport.id'), nullable=False, index=True)
+    codeshare = Column(Boolean)
+    stops = Column(Integer, nullable=False, index=True)
