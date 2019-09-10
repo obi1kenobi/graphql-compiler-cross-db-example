@@ -24,7 +24,7 @@ def get_orientdb_graphql_schema_and_equivalence_hints():
         schema_graph = get_orientdb_schema_graph(schema_data, index_query_data)
 
         overrides = {
-            'Entity': {
+            'GeographicArea': {
                 'uuid': GraphQLID,
             }
         }
