@@ -11,6 +11,9 @@ from graphql_compiler.schema_generation.graphql_schema import get_graphql_schema
 from demo.server.config import get_pyorient_client
 
 
+verbose = False
+
+
 def get_orientdb_graphql_schema_and_equivalence_hints():
     """Return a tuple (GraphQLSchema, type_equivalence_hints) for use with the GraphQL compiler."""
     graph_client = get_pyorient_client()
@@ -47,6 +50,10 @@ def execute_graphql_query(schema, graphql_query, graphql_args,
         compilation_result = graphql_to_match(
             schema, graphql_query, graphql_args,
             type_equivalence_hints=type_equivalence_hints)
+
+        if verbose:
+            print('\nExecuting OrientDB MATCH against OrientDB:\n',
+                  compilation_result.query)
 
         outputs = [
             x.oRecordData

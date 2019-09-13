@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "58c91fe8ec157a95194d2bd03877fef1f761f9d04b0849e70434716164598720"
+            "sha256": "7f9cbf790ebae3f77a3091c3f0a801ba6a8e60193c1df126dc45a7bacd8cb485"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,10 +26,10 @@
         },
         "arrow": {
             "hashes": [
-                "sha256:4bfacea734ead51495dc47df00421ecfd4ca1f2c0fbe58b9a26eaeddedc31caf",
-                "sha256:67f8be7c0cf420424bc62d8d7dc40b44e4bb2f7b515f9cc2954fb36e35797656"
+                "sha256:7954440e7621629a3e4c30dfd2038362d153e1e2b50424c7a6f10e1cdf211a7b",
+                "sha256:c65ea9214403c77b09bd676cba3dcf1e0a396f5dfb316b811bb7f7e10d99e955"
             ],
-            "version": "==0.14.7"
+            "version": "==0.15.1"
         },
         "attrs": {
             "hashes": [
@@ -62,10 +62,10 @@
         },
         "certifi": {
             "hashes": [
-                "sha256:046832c04d4e752f37383b628bc601a7ea7211496b4638f6514d0e5b9acc4939",
-                "sha256:945e3ba63a0b9f577b1395204e13c3a231f9bc0223888be653286534e5873695"
+                "sha256:e4f3620cfea4f83eedc95b24abd9cd56f3c4b146dd0177e83a21b4eb49e21e50",
+                "sha256:fd7c7c74727ddcf00e9acd26bba8da604ffec95bf1c2144e67aff7a8b50e6cef"
             ],
-            "version": "==2019.6.16"
+            "version": "==2019.9.11"
         },
         "chardet": {
             "hashes": [
@@ -104,11 +104,11 @@
         },
         "graphql-compiler": {
             "hashes": [
-                "sha256:a42151bbaf9e10a42d180af22ca25fb0630c0b5319c8e88d5be483898058fd79",
-                "sha256:fef435e389d806f142733955a7d7298511e5078ce6dae259aed81bfcbb220667"
+                "sha256:4670e1ca1d543226ae1544e289a6ca1757cb46090e10411a34b9f0318d95da83",
+                "sha256:9ee502e9adb52645c5067f2e410e50a12716599a9dd1279257242474cdb704e3"
             ],
             "index": "pypi",
-            "version": "==2.0.0b1"
+            "version": "==2.0.0.dev4"
         },
         "graphql-core": {
             "hashes": [
@@ -197,11 +197,11 @@
         },
         "jupyterlab": {
             "hashes": [
-                "sha256:79d03b374aa90d59466f138539ba0acc599c0129a69cf9786974316a8a5524f8",
-                "sha256:c5cb8d9b4fd24c1c9114d5e19adf1a2e11926f70ce7a460f6fdf60a9540350ab"
+                "sha256:820975c5a4d7be40245d7ec1c4feef469fa07f8f62907091bc4965353da124e0",
+                "sha256:beeee620270daa6d920b50646e404a175bd4b65575589d6446b9faf355d96859"
             ],
             "index": "pypi",
-            "version": "==1.1.2"
+            "version": "==1.1.3"
         },
         "jupyterlab-server": {
             "hashes": [
@@ -508,6 +508,13 @@
                 "sha256:2f8ff566a4d3a92246d367f2e9cd6ed3edeef670dcd6dda6dfdc9efed88bcd80"
             ],
             "version": "==1.3.8"
+        },
+        "tabulate": {
+            "hashes": [
+                "sha256:8af07a39377cee1103a5c8b3330a421c2d99b9141e9cc5ddd2e3263fea416943"
+            ],
+            "index": "pypi",
+            "version": "==0.8.3"
         },
         "terminado": {
             "hashes": [

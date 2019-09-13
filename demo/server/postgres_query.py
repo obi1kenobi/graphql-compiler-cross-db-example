@@ -5,6 +5,9 @@ from sqlalchemy import MetaData, dialects
 from demo.server.config import sqlalchemy_engine
 
 
+verbose = False
+
+
 def get_postgres_schema_info():
     """Return a SQLAlchemySchemaInfo object for use with the GraphQL compiler."""
     metadata = MetaData(bind=sqlalchemy_engine)
@@ -47,6 +50,10 @@ def execute_graphql_query(sql_schema_info, graphql_query, graphql_args, limit=10
             fetched_results = result_proxy.fetchall()
         else:
             fetched_results = result_proxy.fetchmany(size=limit)
+
+        if verbose:
+            print('\nExecuting SQL against Postgres:\n',
+                  compilation_result.query.compile(dialect=dialects.postgresql.dialect()))
 
         outputs = [
             dict(row)

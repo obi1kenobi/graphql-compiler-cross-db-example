@@ -5,13 +5,14 @@ verify_ssl = true
 
 [packages]
 requests = "*"
-graphql-compiler = "==2.0.0b1"
+graphql-compiler = "==2.0.0.dev4"
 grift = "*"
 psycopg2-binary = "*"
 pyorient = "*"
 backoff = "*"
 jupyterlab = "*"
 pandas = "*"
+tabulate = "*"
 
 [requires]
 python_version = "3.6"
