@@ -100,6 +100,10 @@ def load_countries_and_regions(countries_df):
             area_name_and_type_to_vertex[(region_name, region_kind)])
 
 
-if __name__ == '__main__':
+def orientdb_load_all():
     countries_df = get_countries_data()
     load_countries_and_regions(countries_df)
+
+
+if __name__ == '__main__':
+    orientdb_load_all()

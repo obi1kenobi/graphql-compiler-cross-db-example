@@ -81,7 +81,7 @@ def load_flight_routes(flight_routes_df, airlines_df, airports_df):
             session.add(flight_route)
 
 
-if __name__ == '__main__':
+def postgres_load_all():
     airlines_df = get_airlines_data()
     airports_df = get_airports_data()
     flight_routes_df = get_flight_routes_data()
@@ -90,3 +90,7 @@ if __name__ == '__main__':
     load_airlines(airlines_df, countries_df)
     load_airports(airports_df, countries_df)
     load_flight_routes(flight_routes_df, airlines_df, airports_df)
+
+
+if __name__ == '__main__':
+    postgres_load_all()

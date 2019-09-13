@@ -17,21 +17,21 @@ services:
       POSTGRES_PASSWORD: cross-db-example
     ports:
       - "127.0.0.1:5432:5432"
-  web:
-    build:
-      context: .
-      dockerfile: ./docker/server.Dockerfile
-    image: demo-web-server
-    restart: always
-    ports:
-      - "127.0.0.1:5000:5000"
-    environment:
-      ORIENTDB_HOST: orientdb
-      ORIENTDB_DB: xdb
-      ORIENTDB_USER: root
-      ORIENTDB_PASSWORD: cross-db-example
-      POSTGRES_HOST: postgres
-      POSTGRES_DB: xdb
-      POSTGRES_USER: xdb
-      POSTGRES_PASSWORD: cross-db-example
-    command: ["sleep", "inf"]
+  # web:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/server.Dockerfile
+  #   image: demo-web-server
+  #   restart: always
+  #   ports:
+  #     - "127.0.0.1:5000:5000"
+  #   environment:
+  #     ORIENTDB_HOST: orientdb
+  #     ORIENTDB_DB: xdb
+  #     ORIENTDB_USER: root
+  #     ORIENTDB_PASSWORD: cross-db-example
+  #     POSTGRES_HOST: postgres
+  #     POSTGRES_DB: xdb
+  #     POSTGRES_USER: xdb
+  #     POSTGRES_PASSWORD: cross-db-example
+  #   command: ["sleep", "inf"]
